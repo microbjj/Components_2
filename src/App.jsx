@@ -3,7 +3,7 @@ import styles from './app.module.css';
 import data from './data.json';
 
 export const App = () => {
-    const [steps, setSteps] = useState(data);
+    const [steps] = useState(data);
     const [activeIndex, setActiveIndex] = useState(0);
 
     function backBtn() {
@@ -40,8 +40,15 @@ export const App = () => {
                                 styles['steps-item'] +
                                 ' ' +
                                 (isDone ? styles.done : null);
+                            const showActive =
+                                styles['steps-item'] +
+                                ' ' +
+                                (activeIndex === index ? styles.active : null);
                             return (
-                                <li key={step.id} className={showDone}>
+                                <li
+                                    key={step.id}
+                                    className={`${showDone} ${showActive}`}
+                                >
                                     <button
                                         onClick={() => handleClickStep(index)}
                                         className={styles['steps-item-button']}
